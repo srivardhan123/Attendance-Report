@@ -1,0 +1,87 @@
+extensions:
+  dx/excshell/1:
+    operations:
+      view:
+        - type: web
+          impl: index.html
+    actions: actions
+    web: web-src
+    runtimeManifest:
+      packages:
+        merch-copilot:
+          license: Apache-2.0
+          actions:
+            list-categories:
+              function: actions/list-categories/index.js
+              web: 'yes'
+              runtime: nodejs:22
+              inputs:
+                LOG_LEVEL: $LOG_LEVEL
+                COMMERCE_SANDBOX_ADMIN_URL: $COMMERCE_SANDBOX_ADMIN_URL
+                COMMERCE_CLIENT_ID: $COMMERCE_CLIENT_ID
+                COMMERCE_CLIENT_SECRET: $COMMERCE_CLIENT_SECRET
+                COMMERCE_ORG_ID: $COMMERCE_ORG_ID
+              annotations:
+                require-adobe-auth: false
+                final: true
+                include-ims-credentials: true
+            get-bestsellers:
+              function: actions/get-bestsellers/index.js
+              web: 'yes'
+              runtime: nodejs:22
+              inputs:
+                LOG_LEVEL: $LOG_LEVEL
+                COMMERCE_SANDBOX_ADMIN_URL: $COMMERCE_SANDBOX_ADMIN_URL
+                COMMERCE_CLIENT_ID: $COMMERCE_CLIENT_ID
+                COMMERCE_CLIENT_SECRET: $COMMERCE_CLIENT_SECRET
+                COMMERCE_ORG_ID: $COMMERCE_ORG_ID
+              limits:
+                timeout: 120000
+              annotations:
+                require-adobe-auth: false
+                final: true
+                include-ims-credentials: true
+            generate-image:
+              function: actions/generate-image/index.js
+              web: 'yes'
+              runtime: nodejs:22
+              inputs:
+                LOG_LEVEL: $LOG_LEVEL
+                PHOTOSHOP_CLIENT_ID: $PHOTOSHOP_CLIENT_ID
+                PHOTOSHOP_CLIENT_SECRET: $PHOTOSHOP_CLIENT_SECRET
+                PHOTOSHOP_ORG_ID: $PHOTOSHOP_ORG_ID
+              limits:
+                timeout: 300000
+              annotations:
+                require-adobe-auth: false
+                final: true
+            enhance-image:
+              function: actions/enhance-image/index.js
+              web: 'yes'
+              runtime: nodejs:22
+              inputs:
+                LOG_LEVEL: $LOG_LEVEL
+                PHOTOSHOP_CLIENT_ID: $PHOTOSHOP_CLIENT_ID
+                PHOTOSHOP_CLIENT_SECRET: $PHOTOSHOP_CLIENT_SECRET
+                PHOTOSHOP_ORG_ID: $PHOTOSHOP_ORG_ID
+              limits:
+                timeout: 300000
+              annotations:
+                require-adobe-auth: false
+                final: true
+            publish-product:
+              function: actions/publish-product/index.js
+              web: 'yes'
+              runtime: nodejs:22
+              inputs:
+                LOG_LEVEL: $LOG_LEVEL
+                COMMERCE_SANDBOX_ADMIN_URL: $COMMERCE_SANDBOX_ADMIN_URL
+                COMMERCE_CLIENT_ID: $COMMERCE_CLIENT_ID
+                COMMERCE_CLIENT_SECRET: $COMMERCE_CLIENT_SECRET
+                COMMERCE_ORG_ID: $COMMERCE_ORG_ID
+              limits:
+                timeout: 120000
+              annotations:
+                require-adobe-auth: false
+                final: true
+                include-ims-credentials: true
